@@ -22,6 +22,7 @@ function AddUser(props) {
       id: Math.floor(Math.random() * 10000),
     };
 
+    alert(`${enteredUserInfo.name} has been added!`);
     props.onAddedUser(enteredUserInfo);
     setName("");
     setAge("");
