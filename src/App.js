@@ -6,6 +6,7 @@ import UserList from "./Components/UserList/UserList";
 function App() {
   const [userList, setUserList] = useState([]);
 
+  // Adds the new user info to the userList array
   const addUserHandler = (newUserInfo) => {
     console.log(newUserInfo);
     setUserList((prevUserList) => {

@@ -11,6 +11,8 @@ html {
 
 .empty-list {
   color: rgb(166, 82, 245);
+  font-size: 1.35rem;
+  margin: 1rem;
 }
 
 .list-title {
