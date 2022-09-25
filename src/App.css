@@ -4,7 +4,8 @@
 }
 
 html {
-  background-color: rgb(17, 17, 17);
+  background-color: #1f1f1f;
+  /* background-color: rgb(17, 17, 17); */
   text-align: center;
   margin: 1.5rem auto;
 }

@@ -10,4 +10,5 @@
   background-color: white;
   width: 75%;
   margin: 0.5rem auto;
+  z-index: 1;
 }

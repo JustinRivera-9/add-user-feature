@@ -4,7 +4,8 @@ const Modal = (props) => {
   let errorType = props.errorMessage;
 
   return (
-    <div className="modal-background">
+    <>
+      <div className="modal-background" onClick={props.exitModal} />
       <div className="modal">
         <p className="error-title">Invalid Input</p>
         <div>
@@ -14,7 +15,7 @@ const Modal = (props) => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

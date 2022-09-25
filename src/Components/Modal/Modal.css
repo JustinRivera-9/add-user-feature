@@ -1,17 +1,24 @@
 .modal-background {
-  position: absolute;
+  position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.877);
   height: 100%;
+  z-index: 5;
 }
 
 .modal {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
   margin: 5rem auto;
   width: 10rem;
   background-color: white;
   border-radius: 15px;
   width: 20rem;
+  z-index: 100;
   /* how to center up-down */
 }
 

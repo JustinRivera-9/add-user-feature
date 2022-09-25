@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import "./AddUser.css";
+// import onClickOutside from "react-onclickoutside";
 
 function AddUser(props) {
   const [name, setName] = useState("");
@@ -25,7 +26,7 @@ function AddUser(props) {
       id: Math.floor(Math.random() * 10000),
     };
 
-    if (name.length === 0 || age.isNaN) {
+    if (name.trim().length === 0 || age.isNaN) {
       setShowErrorModal(true);
       setErrorType("Please enter a valid name and age (non-empty values).");
     } else if (age <= 0) {
@@ -41,17 +42,16 @@ function AddUser(props) {
   };
 
   const exitModalHandler = (e) => {
-    if (e.target === "button.error-button" || e.target.closest(".modal")) {
-      setShowErrorModal(false);
-    }
+    setShowErrorModal(false);
   };
 
   return (
     <div>
       <form onSubmit={submitHandler}>
         <div className="form-field">
-          <label>Username:</label>
+          <label htmlFor="username">Username:</label>
           <input
+            id="username"
             type="text"
             placeholder="Enter Name"
             value={name}
@@ -59,8 +59,9 @@ function AddUser(props) {
           ></input>
         </div>
         <div className="form-field">
-          <label>Age (Years):</label>
+          <label htmlFor="age">Age (Years):</label>
           <input
+            id="age"
             type="number"
             placeholder="Enter Age"
             value={age}
@@ -69,7 +70,7 @@ function AddUser(props) {
         </div>
         <button type="submit">Add User</button>
       </form>
-      {showErrorModal === true && (
+      {showErrorModal && (
         <Modal errorMessage={errorType} exitModal={exitModalHandler} />
       )}
     </div>
