@@ -1,42 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Modal from "../Modal/Modal";
 import "./AddUser.css";
-// import onClickOutside from "react-onclickoutside";
 
 function AddUser(props) {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorType, setErrorType] = useState("");
-
-  function nameChangeHandler(e) {
-    setName(e.target.value);
-  }
-
-  function ageChangeHandler(e) {
-    setAge(e.target.value);
-  }
 
   const submitHandler = (e) => {
     e.preventDefault();
 
+    const enteredName = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
+
     const enteredUserInfo = {
-      name: name,
-      age: age,
+      name: enteredName,
+      age: enteredAge,
       id: Math.floor(Math.random() * 10000),
     };
 
-    if (name.trim().length === 0 || age.isNaN) {
+    if (enteredName.trim().length === 0 || enteredAge.isNaN) {
       setShowErrorModal(true);
       setErrorType("Please enter a valid name and age (non-empty values).");
-    } else if (age <= 0) {
+    } else if (enteredAge <= 0) {
       setShowErrorModal(true);
       setErrorType("Please enter a valid age (>0).");
     } else {
       // alert(`${enteredUserInfo.name} has been added!`);
       props.onAddedUser(enteredUserInfo);
-      setName("");
-      setAge("");
+      nameInputRef.current.value = "";
+      ageInputRef.current.value = "";
     }
     return errorType;
   };
@@ -54,8 +49,7 @@ function AddUser(props) {
             id="username"
             type="text"
             placeholder="Enter Name"
-            value={name}
-            onChange={nameChangeHandler}
+            ref={nameInputRef}
           ></input>
         </div>
         <div className="form-field">
@@ -64,8 +58,7 @@ function AddUser(props) {
             id="age"
             type="number"
             placeholder="Enter Age"
-            value={age}
-            onChange={ageChangeHandler}
+            ref={ageInputRef}
           ></input>
         </div>
         <button type="submit">Add User</button>
